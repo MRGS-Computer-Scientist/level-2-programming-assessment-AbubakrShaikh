@@ -4,14 +4,16 @@ from main_page import *
 
 #Main window, all frames are displayed here
 
-window = Tk()
+from tkinter import *
 
-window.geometry(str(w_width)+"x"+str(w_height))
-window.title("My App")
+if __name__ == "__main__":
+    window = Tk()
+    window.configure(bg=bg_color)
+    window.geometry(str(w_width)+"x"+str(w_height))
+    window.title("My App")
 
-#First frame
-initial_page = start_page()
+    #Initial Frame
+    start_frame = start_page()
 
 
-
-window.mainloop()
+    window.mainloop()
