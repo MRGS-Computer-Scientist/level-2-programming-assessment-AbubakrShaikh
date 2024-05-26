@@ -8,8 +8,12 @@ class start_page():
         intro_frame = Frame(bg=bg_color, width=w_width, height=w_height)
         intro_frame.pack()
 
-        instruct_label = Label(intro_frame, bg=bg_color, text="Some Placeholder Text That I Use For Convinience")
-        instruct_label.grid(row=0, column=1)
+        instruct_label = Label(intro_frame, bg=bg_color, text="Some Placeholder Text", font=head_font)
+        instruct_label.grid(row=0, column=0, pady=250, columnspan=2 )
 
-        continue_button = Button(intro_frame, bg="#666666", text="Continue", width=30, height=5)
-        continue_button.grid(row=1, column=1)
+        continue_button = Button(intro_frame, bg="#eeeeff", text="Continue", font=button_font, width=30, height=5)
+        continue_button.grid(row=1, column=0, padx=50, pady=150)
+
+        exit_button = Button(intro_frame, bg="#aaaaff", text="Exit", width=30, height=5)
+        exit_button.grid(row=1, column=1, padx=50, pady=150)
+
