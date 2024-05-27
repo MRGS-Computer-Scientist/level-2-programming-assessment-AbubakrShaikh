@@ -6,5 +6,6 @@ app_title = "AppTITLE"
 
 bg_color = "#8094dc"
 
-head_font = ("Helvetica", "30", "bold")
-button_font = ("Terminal", "14", "bold")
+head_font = ("Forte", "40")
+button_font = ("Freestyle Script", "20", "bold")
+
