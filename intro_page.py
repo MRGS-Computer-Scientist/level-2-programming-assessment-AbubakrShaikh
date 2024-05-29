@@ -3,6 +3,9 @@ from app_settings import *
 
 #This will be what the user sees when the app opens
 
+
+
+
 class start_page():
     def __init__(self):
         intro_frame = Frame(bg=bg_color, width=w_width, height=w_height)
@@ -14,6 +17,9 @@ class start_page():
         continue_button = Button(intro_frame, bg="#eeeeff", text="Continue", font=button_font, width=20, height=2)
         continue_button.grid(row=1, column=0, padx=50, pady=125)
 
-        exit_button = Button(intro_frame, bg="#aaaaff", text="Exit", font=button_font, width=20, height=2)
+        exit_button = Button(intro_frame, bg="#aaaaff", text="Exit", font=button_font, width=20, height=2, command=)
         exit_button.grid(row=1, column=1, padx=50, pady=125)
 
+    def exit_function():
+        confirm_exit = Tk()
+        confirm_exit.geometry("")
