@@ -1,4 +1,6 @@
-from tkinter import *
+from app_settings import *
+
+
 
 #This will be the second page after the intro page where the user will see the main content
 

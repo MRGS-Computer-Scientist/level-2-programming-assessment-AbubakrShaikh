@@ -13,7 +13,7 @@ head_font = ("Forte", "40") # Font for the main header
 button_font = ("Freestyle Script", "20", "bold") # Font for buttons
 
 
-def exit_function(intro_frame):  # Pass intro_frame as an argument
+def exit_function(intro_frame, window):  # Pass intro_frame as an argument
     confirm_window = Tk() # Seperate window for exit confirmation
     confirm_window.geometry("175x50")
     confirm_window.configure(bg=bg_color)
@@ -21,6 +21,7 @@ def exit_function(intro_frame):  # Pass intro_frame as an argument
     def pressed_yes(): # Function to run if "yes" button is pressed
         confirm_window.destroy()
         intro_frame.destroy()
+        window.destroy()
 
     def pressed_no(): # Function to run if "no" button is pressed
         confirm_window.destroy()

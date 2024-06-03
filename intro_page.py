@@ -1,5 +1,4 @@
 #Import modules
-from tkinter import *
 from app_settings import *
 
 class start_page():
@@ -18,4 +17,4 @@ class start_page():
         self.exit_button.grid(row=1, column=1, padx=50, pady=125)
 
     def exit_function_wrapper(self):
-        exit_function(self.intro_frame)  # Pass intro_frame to the exit_function
+        exit_function(self.intro_frame, self.master)  # Pass intro_frame to the exit_function
