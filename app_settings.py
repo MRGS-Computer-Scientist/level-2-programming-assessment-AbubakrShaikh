@@ -37,19 +37,44 @@ def exit_function(intro_frame, window):  # Pass intro_frame as an argument
 
     confirm_window.mainloop()
 
+
 def error_function():  # Pass intro_frame as an argument
     error_window = Tk() # Seperate window for exit confirmation
     error_window.geometry("230x50")
     error_window.configure(bg=bg_color)
     error_window.title("Error")
-
-    def pressed_exit(): # Function to run if "no" button is pressed
-        error_window.destroy()
-
     error_message = Label(error_window, bg=bg_color, text="Please enter a valid username or password") # Tells the user to enter a vaild entry
     error_message.grid(row=0, column=0)
 
-    exit_error = Button(error_window, text="Exit", command=pressed_exit) # Button to close error message
+    exit_error = Button(error_window, text="Exit", command=error_window.destroy) # Button to close error message
+    exit_error.grid(row=1, column=0)
+
+    error_window.mainloop()
+
+def exist_error():
+    error_window = Tk() # Seperate window for exit confirmation
+    error_window.geometry("160x50")
+    error_window.configure(bg=bg_color)
+    error_window.title("Error")
+
+    error_message = Label(error_window, bg=bg_color, text="That username already exists") # Tells the user to enter a vaild entry
+    error_message.grid(row=0, column=0)
+
+    exit_error = Button(error_window, text="Exit", command=error_window.destroy) # Button to close error message
+    exit_error.grid(row=1, column=0)
+
+    error_window.mainloop()
+
+def match_error():
+    error_window = Tk() # Seperate window for exit confirmation
+    error_window.geometry("225x50")
+    error_window.configure(bg=bg_color)
+    error_window.title("Error")
+
+    error_message = Label(error_window, bg=bg_color, text="Username and Password do not match\n or do not exist") # Tells the user to enter a vaild entry
+    error_message.grid(row=0, column=0)
+
+    exit_error = Button(error_window, text="Exit", command=error_window.destroy) # Button to close error message
     exit_error.grid(row=1, column=0)
 
     error_window.mainloop()

@@ -10,6 +10,6 @@ if __name__ == "__main__": # Run main window
     window.title("My App")
 
     #Create instance of StartPage
-    start_frame = start_page(window)  # Start the initial frame and pass window as the master
+    start_frame = start_page(window)  # Start the initial frame and pass window as the master.
 
     window.mainloop()

@@ -12,6 +12,6 @@ class MainPage():
         self.main_frame.grid()
 
         self.main_title = Label(self.main_frame, bg=bg_color, text="Some Placeholder Text", font=head_font)
-        self.main_title.grid(row=1, column=0, pady=50, columnspan=4)
-
+        self.main_title.grid(row=1, column=0, pady=50, columnspan=2)
+        
         
