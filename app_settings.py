@@ -11,6 +11,7 @@ bg_color = "#8094dc" # Default background of window and frames
 
 head_font = ("Forte", "40") # Font for the main header
 button_font = ("Freestyle Script", "20", "bold") # Font for buttons
+button_color = "#AAAAAA"
 
 
 def exit_function(intro_frame, window):  # Pass intro_frame as an argument

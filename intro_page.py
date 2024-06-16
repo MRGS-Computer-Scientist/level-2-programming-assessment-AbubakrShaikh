@@ -14,7 +14,7 @@ class start_page():
         self.continue_button = Button(self.intro_frame, bg="#eeeeff", text="Continue", font=button_font, width=20, height=2, command=self.open_login_page) # Button to continue to the next part 
         self.continue_button.grid(row=1, column=0, padx=50, pady=125)
 
-        self.exit_button = Button(self.intro_frame, bg="#eeeeff", text="Exit", font=button_font, width=20, height=2, command=self.exit_function_wrapper) # Button to exit program
+        self.exit_button = Button(self.intro_frame, bg=button_color, text="Exit", font=button_font, width=20, height=2, command=self.exit_function_wrapper) # Button to exit program
         self.exit_button.grid(row=1, column=1, padx=50, pady=125)
 
     def exit_function_wrapper(self):

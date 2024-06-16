@@ -32,16 +32,13 @@ class LoginPage:
         self.password_entry.grid(row=4, column=0, pady=20, columnspan=2)
 
         self.login_button = Button(self.login_frame, bg="#eeeeff", text="Login", font=button_font, width=20, height=2, command=self.login)
-        self.login_button.grid(row=6, column=0, padx=50, pady=25)
+        self.login_button.grid(row=5, column=0, padx=50, pady=25)
 
         self.create_button = Button(self.login_frame, bg="#eeeeff", text="Create Account", font=button_font, width=20, height=2, command=self.create_account)
-        self.create_button.grid(row=5, column=0, padx=50, pady=25)
+        self.create_button.grid(row=5, column=1, padx=50, pady=25)
 
-        self.pass_button = Button(self.login_frame, bg="#eeeeff", text="Change Password", font=button_font, width=20, height=2, command=self.change_pass)
-        self.pass_button.grid(row=5, column=1, padx=50, pady=25)
-
-        self.exit_button = Button(self.login_frame, bg="#eeeeff", text="Exit", font=button_font, width=20, height=2, command=self.exit_function_wrapper)
-        self.exit_button.grid(row=6, column=1,padx=50, pady=25,)
+        self.exit_button = Button(self.login_frame, bg=button_color, text="Exit", font=button_font, width=20, height=2, command=self.exit_function_wrapper)
+        self.exit_button.grid(row=6, column=0,padx=50, pady=25, columnspan=2)
 
 
     def error_function_wrapper(self):
