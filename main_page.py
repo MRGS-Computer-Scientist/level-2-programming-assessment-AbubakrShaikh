@@ -1,40 +1,34 @@
+from tkinter import *
 from app_settings import *
+from library_page import *
 
-
-
-
-#This will be the second page after the intro page where the user will see the main content
-
-class MainPage():
+class MainPage:
     def __init__(self, master):
         self.master = master
-        self.main_frame = Frame(background="#8094dc", width=500, height=500)
-        self.main_frame.grid()
+        self.main_frame = Frame(background="#8094dc", width=w_width, height=w_height)
+        self.main_frame.pack_propagate(False)  # Prevent frame from resizing to fit content
+        self.main_frame.pack()
 
-        self.button_one = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_one.grid(row=0, column=0, padx=125, pady=30)
+        # Top row buttons
+        self.top_buttons = []
+        for i in range(4):
+            button = Button(self.main_frame, text=f"Library {i+1}", font=plus_font, width=12, height=4,
+                            command=lambda num=i+1: self.open_library_page(num))
+            button.grid(row=0, column=i, padx=20, pady=20)
+            self.top_buttons.append(button)
 
-        self.button_two = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_two.grid(row=0, column=1, padx=125, pady=30)
-        
-        self.button_three = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_three.grid(row=0, column=2, padx=125, pady=30)
-
-        self.button_four = Button(self.main_frame, text="Some Placeholder Text", width=30, height=15)
-        self.button_four.grid(row=0, column=3, padx=125, pady=30)
-
-
+        # Middle row placeholder text
         self.main_title = Label(self.main_frame, bg=bg_color, text="Some Placeholder Text", font=head_font)
-        self.main_title.grid(row=1, column=0, pady=50, columnspan=4)
-        
-        self.button_five = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_five.grid(row=2, column=0, padx=125, pady=30)
+        self.main_title.grid(row=1, column=0, columnspan=4, pady=50)
 
-        self.button_six = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_six.grid(row=2, column=1, padx=125, pady=30)
+        # Bottom row buttons
+        self.bottom_buttons = []
+        for i in range(4):
+            button = Button(self.main_frame, text=f"Library {i+5}", font=plus_font, width=12, height=4,
+                            command=lambda num=i+5: self.open_library_page(num))
+            button.grid(row=2, column=i, padx=20, pady=20)
+            self.bottom_buttons.append(button)
 
-        self.button_seven = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_seven.grid(row=2, column=2, padx=125, pady=30)
-
-        self.button_eight = Button(self.main_frame, text="Some Placeholder Text")
-        self.button_eight.grid(row=2, column=3, padx=125, pady=30)
+    def open_library_page(self, page_number):
+        self.main_frame.pack_forget()  # Hides the main frame
+        self.library_page = LibraryPage(self.master, page_number, self.main_frame)  # Create an instance of the respective library page
