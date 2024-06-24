@@ -2,8 +2,8 @@
 from tkinter import *
 
 # Variables to be used in code
-w_width = 1600 # Width of window and frames
-w_height = 900 # Height of window and frames
+w_width = 1920 # Width of window and frames
+w_height = 1080 # Height of window and frames
 
 app_title = "AppTITLE" # Title of window
 
@@ -12,6 +12,8 @@ bg_color = "#8094dc" # Default background of window and frames
 head_font = ("Forte", "40") # Font for the main header
 button_font = ("Freestyle Script", "20", "bold") # Font for buttons
 button_color = "#AAAAAA"
+plus_font= ("Mistral", "50", "bold")
+
 
 
 def exit_function(intro_frame, window):  # Pass intro_frame as an argument
@@ -68,7 +70,7 @@ def exist_error():
 
 def match_error():
     error_window = Tk() # Seperate window for exit confirmation
-    error_window.geometry("225x50")
+    error_window.geometry("220x65")
     error_window.configure(bg=bg_color)
     error_window.title("Error")
 
