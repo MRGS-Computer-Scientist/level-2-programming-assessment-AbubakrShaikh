@@ -31,14 +31,17 @@ class LoginPage:
         self.password_entry = Entry(self.login_frame, show="*", font=("Arial", 20))
         self.password_entry.grid(row=4, column=0, pady=20, columnspan=2)
 
-        self.login_button = Button(self.login_frame, bg="#eeeeff", text="Login", font=button_font, width=20, height=2, command=self.login)
-        self.login_button.grid(row=5, column=0, padx=50, pady=25)
+        if not user_list:
+            print(user_list)
+            self.create_button = Button(self.login_frame, bg="#eeeeff", text="Create Account", font=button_font, width=20, height=2, command=self.create_account)
+            self.create_button.grid(row=5, column=0, padx=5, pady=25)
 
-        self.create_button = Button(self.login_frame, bg="#eeeeff", text="Create Account", font=button_font, width=20, height=2, command=self.create_account)
-        self.create_button.grid(row=5, column=1, padx=50, pady=25)
+        else:
+            self.login_button = Button(self.login_frame, bg="#eeeeff", text="Login", font=button_font, width=20, height=2, command=self.login)
+            self.login_button.grid(row=5, column=0, padx=5, pady=25)
 
         self.exit_button = Button(self.login_frame, bg=button_color, text="Exit", font=button_font, width=20, height=2, command=self.exit_function_wrapper)
-        self.exit_button.grid(row=6, column=0,padx=50, pady=25, columnspan=2)
+        self.exit_button.grid(row=5, column=1,padx=5, pady=25, columnspan=2)
 
 
     def error_function_wrapper(self):
@@ -70,6 +73,16 @@ class LoginPage:
                 for item in pass_list: # Write each element of the list to a separate line
                     pass_file.write(str(item) + "\n")
 
+        account_window = Tk()
+        account_window.geometry("160x50")
+        account_window.configure(bg=bg_color)
+        account_window.title("Account Info")
+        create_message = Label(account_window, bg=bg_color, text="Account successfully created") # Tells the user their account has been created
+        create_message.grid(row=0, column=0)
+        exit_account = Button(account_window, text="Close", command=account_window.destroy) # Button to close error message
+        exit_account.grid(row=1, column=0)
+        self.login_frame.destroy()  # Destroy the login frame
+        main_page = MainPage(self.master)  # Create an instance of the main page
 
 
     def login(self):
@@ -85,8 +98,11 @@ class LoginPage:
                 pass_check = user_list.index(username)
                 
                 if pass_list[pass_check] == password:
+
                     self.login_frame.destroy()  # Destroy the login frame
                     main_page = MainPage(self.master)  # Create an instance of the main page
+
+                    
                 else:
                     match_error()
             else:

@@ -9,9 +9,10 @@ app_title = "AppTITLE" # Title of window
 
 bg_color = "#8094dc" # Default background of window and frames
 
-head_font = ("Forte", "40") # Font for the main header
+head_font = ("Forte", "45") # Font for the main header
 button_font = ("Freestyle Script", "20", "bold") # Font for buttons
 button_color = "#AAAAAA"
+instruction_font = ("Helvetica", "20")
 plus_font= ("Mistral", "50", "bold")
 
 
@@ -49,7 +50,7 @@ def error_function():  # Pass intro_frame as an argument
     error_message = Label(error_window, bg=bg_color, text="Please enter a valid username or password") # Tells the user to enter a vaild entry
     error_message.grid(row=0, column=0)
 
-    exit_error = Button(error_window, text="Exit", command=error_window.destroy) # Button to close error message
+    exit_error = Button(error_window, text="Close", command=error_window.destroy) # Button to close error message
     exit_error.grid(row=1, column=0)
 
     error_window.mainloop()
@@ -63,7 +64,7 @@ def exist_error():
     error_message = Label(error_window, bg=bg_color, text="That username already exists") # Tells the user to enter a vaild entry
     error_message.grid(row=0, column=0)
 
-    exit_error = Button(error_window, text="Exit", command=error_window.destroy) # Button to close error message
+    exit_error = Button(error_window, text="Close", command=error_window.destroy) # Button to close error message
     exit_error.grid(row=1, column=0)
 
     error_window.mainloop()
@@ -77,7 +78,7 @@ def match_error():
     error_message = Label(error_window, bg=bg_color, text="Username and Password do not match\n or do not exist") # Tells the user to enter a vaild entry
     error_message.grid(row=0, column=0)
 
-    exit_error = Button(error_window, text="Exit", command=error_window.destroy) # Button to close error message
+    exit_error = Button(error_window, text="Close", command=error_window.destroy) # Button to close error message
     exit_error.grid(row=1, column=0)
 
     error_window.mainloop()
