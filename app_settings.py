@@ -16,7 +16,6 @@ instruction_font = ("Helvetica", "20")
 plus_font= ("Mistral", "50", "bold")
 
 
-
 def exit_function(intro_frame, window):  # Pass intro_frame as an argument
     confirm_window = Tk() # Seperate window for exit confirmation
     confirm_window.geometry("175x50")
