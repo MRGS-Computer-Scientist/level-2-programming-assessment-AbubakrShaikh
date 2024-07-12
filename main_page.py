@@ -1,34 +1,52 @@
 from tkinter import *
 from app_settings import *
-from library_page import *
+from library_page import LibraryPage
 
-class MainPage:
-    def __init__(self, master):
-        self.master = master
-        self.main_frame = Frame(background="#8094dc", width=w_width, height=w_height)
-        self.main_frame.pack_propagate(False)  # Prevent frame from resizing to fit content
-        self.main_frame.pack()
+class MainPage(Frame):
+    def __init__(self, parent):
+        Frame.__init__(self, parent, bg=bg_color, width=w_width, height=w_height)
+        self.pack_propagate(False)  # Prevent frame from resizing to fit content
+        self.pack()
 
-        # Top row buttons
-        self.top_buttons = []
-        for i in range(4):
-            button = Button(self.main_frame, text=f"Library {i+1}", font=plus_font, width=12, height=4,
-                            command=lambda num=i+1: self.open_library_page(num))
-            button.grid(row=0, column=i, padx=20, pady=20)
-            self.top_buttons.append(button)
+        self.library_names = self.load_library_names()
 
-        # Middle row placeholder text
-        self.main_title = Label(self.main_frame, bg=bg_color, text="Some Placeholder Text", font=head_font)
-        self.main_title.grid(row=1, column=0, columnspan=4, pady=50)
+        self.title_label = Label(self, text="Library Pages", font=("Helvetica", 30, "bold"), bg=bg_color)
+        self.title_label.grid(row=0, column=0, columnspan=4, pady=20)
 
-        # Bottom row buttons
-        self.bottom_buttons = []
-        for i in range(4):
-            button = Button(self.main_frame, text=f"Library {i+5}", font=plus_font, width=12, height=4,
-                            command=lambda num=i+5: self.open_library_page(num))
-            button.grid(row=2, column=i, padx=20, pady=20)
-            self.bottom_buttons.append(button)
+        self.create_buttons()
+
+    def load_library_names(self):
+        try:
+            with open("library_names.txt", "r") as file:
+                library_names = file.readlines()
+                return [name.strip() for name in library_names]
+        except FileNotFoundError:
+            return []
+
+    def create_buttons(self):
+        self.buttons = []
+        for i in range(1, 9):  # Create 8 buttons
+            button_text = self.get_library_name(i)
+            button = Button(self, text=button_text, font=plus_font, width=12, height=4,
+                            command=lambda num=i: self.open_library_page(num))
+            row = 1 if i <= 4 else 2
+            column = i - 1 if i <= 4 else i - 5
+            button.grid(row=row, column=column, padx=20, pady=20)
+            self.buttons.append(button)
+
+    def get_library_name(self, page_number):
+        if page_number <= len(self.library_names):
+            return self.library_names[page_number - 1]
+        else:
+            return f"Library Page {page_number}"
 
     def open_library_page(self, page_number):
-        self.main_frame.pack_forget()  # Hides the main frame
-        self.library_page = LibraryPage(self.master, page_number, self.main_frame)  # Create an instance of the respective library page
+        self.pack_forget()  # Hides the main frame
+        self.library_page = LibraryPage(self.master, page_number, self, self.update_button_text)  # Pass callback function
+
+    def update_button_text(self, page_number, new_name):
+        self.library_names[page_number - 1] = new_name
+        self.buttons[page_number - 1].config(text=new_name)
+
+    def show(self):
+        self.pack()

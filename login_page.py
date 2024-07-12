@@ -1,6 +1,11 @@
 from tkinter import *
 from app_settings import *
 from main_page import MainPage
+import re  # Import regular expression module for validation
+
+# Function to validate if a string is alphanumeric
+def is_alphanumeric(s):
+    return bool(re.match('^[a-zA-Z0-9]*$', s))
 
 with open("list_data.txt", "r") as user_file: # Open the file in read mode
     user_list = [line.strip() for line in user_file] # Read each line and convert it back to the original data type
@@ -48,42 +53,44 @@ class LoginPage:
         error_function(self.login_frame, self.master)  # Pass intro_frame to the exit_function
 
     def create_account(self):
-        create_username = self.username_entry.get() # Get the username in the entry box
-        if create_username == "":
+        create_username = self.username_entry.get().strip()
+        create_password = self.password_entry.get().strip()
+
+        # Validate username and password
+        if not (1 <= len(create_username) <= 16 and is_alphanumeric(create_username)):
             error_function()
-        else:
-            if create_username in user_list:
-                exist_error()
-            else:
-                user_list.append(create_username)
-
-                with open("list_data.txt", "w") as user_file: # Open a file in write mode
-                    for item in user_list: # Write each element of the list to a separate line
-                        user_file.write(str(item) + "\n")
-
-            
-
-        create_password = self.password_entry.get() # Get the password in the entry box
-        if create_password == "":
+            return
+        if not (1 <= len(create_password) <= 16 and is_alphanumeric(create_password)):
             error_function()
+            return
+
+        # Check for existing username
+        if create_username in user_list:
+            exist_error()
         else:
+            # Valid username and password, proceed to save
+            user_list.append(create_username)
+            with open("list_data.txt", "w") as user_file:
+                for item in user_list:
+                    user_file.write(str(item) + "\n")
+
             pass_list.append(create_password)
-
-            with open("password.txt", "w") as pass_file: # Open a file in write mode
-                for item in pass_list: # Write each element of the list to a separate line
+            with open("password.txt", "w") as pass_file:
+                for item in pass_list:
                     pass_file.write(str(item) + "\n")
 
-        account_window = Tk()
-        account_window.geometry("160x50")
-        account_window.configure(bg=bg_color)
-        account_window.title("Account Info")
-        create_message = Label(account_window, bg=bg_color, text="Account successfully created") # Tells the user their account has been created
-        create_message.grid(row=0, column=0)
-        exit_account = Button(account_window, text="Close", command=account_window.destroy) # Button to close error message
-        exit_account.grid(row=1, column=0)
-        self.login_frame.destroy()  # Destroy the login frame
-        main_page = MainPage(self.master)  # Create an instance of the main page
+            # Inform user about successful account creation
+            account_window = Tk()
+            account_window.geometry("160x50")
+            account_window.configure(bg=bg_color)
+            account_window.title("Account Info")
+            create_message = Label(account_window, bg=bg_color, text="Account successfully created")
+            create_message.grid(row=0, column=0)
+            exit_account = Button(account_window, text="Close", command=account_window.destroy)
+            exit_account.grid(row=1, column=0)
 
+            self.login_frame.destroy()  # Destroy the login frame
+            main_page = MainPage(self.master)  # Create an instance of the main page
 
     def login(self):
         username = self.username_entry.get()
