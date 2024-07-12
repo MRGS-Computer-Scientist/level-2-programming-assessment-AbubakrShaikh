@@ -21,7 +21,7 @@ class LoginPage:
         self.login_frame = Frame(master, bg=bg_color, width=w_width, height=w_height) # Set frame for LoginPage
         self.login_frame.pack()
 
-        self.title_label = Label(self.login_frame, bg=bg_color, text="Collectiva", font=head_font) # Label for the title of the app
+        self.title_label = Label(self.login_frame, bg=bg_color, text="Collectiva", font=head_font, fg="white") # Label for the title of the app
         self.title_label.grid(row=0, column=0, pady=50, columnspan=2)
 
         self.username_label = Label(self.login_frame, bg=bg_color, text="Username:", font=("Arial", 20)) # Label for username entry
