@@ -44,10 +44,10 @@ def exit_function(intro_frame, window):  # Pass intro_frame as an argument
 
 def error_function():  # Pass intro_frame as an argument
     error_window = Tk() # Seperate window for exit confirmation
-    error_window.geometry("230x50")
+    error_window.geometry("230x70")
     error_window.configure(bg=bg_color)
     error_window.title("Error")
-    error_message = Label(error_window, bg=bg_color, text="Please enter a valid username or password") # Tells the user to enter a vaild entry
+    error_message = Label(error_window, bg=bg_color, text="Please enter a valid username or password\n from 1 - 16 alphanumerical characters") # Tells the user to enter a vaild entry
     error_message.grid(row=0, column=0)
 
     exit_error = Button(error_window, text="Close", command=error_window.destroy) # Button to close error message
