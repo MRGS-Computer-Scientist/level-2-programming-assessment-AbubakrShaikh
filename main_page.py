@@ -10,7 +10,7 @@ class MainPage(Frame):
 
         self.library_names = self.load_library_names()
 
-        self.title_label = Label(self, text="Library Pages", font=("Helvetica", 30, "bold"), bg=bg_color)
+        self.title_label = Label(self, text="Library Pages", font=head_font, bg=bg_color)
         self.title_label.grid(row=0, column=0, columnspan=4, pady=20)
 
         self.create_buttons()
